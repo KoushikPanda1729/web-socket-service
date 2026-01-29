@@ -17,6 +17,7 @@
     "config": "^4.1.1",
     "js-yaml": "^4.1.0",
     "kafkajs": "^2.2.4",
+    "socket.io": "^4.8.3",
     "uuid": "^9.0.1",
     "winston": "^3.13.0"
   },
@@ -24,6 +25,7 @@
     "@eslint/js": "^9.2.0",
     "@types/config": "^3.3.4",
     "@types/node": "^20.12.11",
+    "@types/socket.io": "^3.0.1",
     "@types/winston": "^2.4.4",
     "eslint": "^8.57.0",
     "globals": "^15.1.0",
