@@ -20,9 +20,18 @@ const startServer = async () => {
     io.on("connection", (socket) => {
       logger.info("Client connected:", { id: socket.id });
 
-      socket.on("join", (tenantId: string) => {
-        socket.join(tenantId);
-        logger.info("Client joined room:", { id: socket.id, tenantId });
+      socket.on("join", (room: string) => {
+        socket.join(room);
+        // Log all rooms and connected sockets
+        const rooms = io.sockets.adapter.rooms;
+        const roomDetails: Record<string, string[]> = {};
+        rooms.forEach((sids, roomName) => {
+          // Skip per-socket rooms (each socket auto-joins a room with its own id)
+          if (!io.sockets.sockets.has(roomName)) {
+            roomDetails[roomName] = Array.from(sids);
+          }
+        });
+        logger.info("Client joined room:", { id: socket.id, room, rooms: roomDetails });
       });
 
       socket.on("disconnect", () => {
