@@ -7,7 +7,7 @@ let broker: MessageBroker | null = null;
 export const createMessageBroker = (): MessageBroker => {
   // singleton
   if (!broker) {
-    broker = new KafkaBroker(Config.KAFKA_CLIENT_ID, [Config.KAFKA_BROKER]);
+    broker = new KafkaBroker(Config.KAFKA_CLIENT_ID, Config.KAFKA_BROKERS, Config.KAFKA_SASL);
   }
   return broker;
 };

@@ -1,11 +1,31 @@
-import { Consumer, EachMessagePayload, Kafka } from "kafkajs";
+import { Consumer, EachMessagePayload, Kafka, type KafkaConfig, type SASLOptions } from "kafkajs";
 import { MessageBroker, MessageHandler } from "../types/broker";
 
 export class KafkaBroker implements MessageBroker {
   private consumer: Consumer;
 
-  constructor(clientId: string, brokers: string[]) {
-    const kafka = new Kafka({ clientId, brokers });
+  constructor(
+    clientId: string,
+    brokers: string[],
+    sasl?: { mechanism: string; username: string; password: string } | null,
+  ) {
+    let kafkaConfig: KafkaConfig = { clientId, brokers };
+
+    if (sasl) {
+      kafkaConfig = {
+        ...kafkaConfig,
+        ssl: {
+          rejectUnauthorized: true,
+        },
+        sasl: {
+          mechanism: sasl.mechanism,
+          username: sasl.username,
+          password: sasl.password,
+        } as SASLOptions,
+      };
+    }
+
+    const kafka = new Kafka(kafkaConfig);
 
     this.consumer = kafka.consumer({ groupId: clientId });
   }
