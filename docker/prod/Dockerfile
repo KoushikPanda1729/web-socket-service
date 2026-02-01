@@ -17,7 +17,7 @@ COPY src ./src
 COPY config ./config
 
 # Build TypeScript code
-RUN npm run build
+RUN npx tsc
 
 # Stage 2: Production stage
 FROM node:20-alpine AS production
