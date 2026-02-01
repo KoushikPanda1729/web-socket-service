@@ -12,9 +12,7 @@ const startServer = async () => {
   try {
     const server = http.createServer();
     const io = new Server(server, {
-      cors: {
-        origin: Config.CORS_ORIGIN,
-      },
+      cors: Config.CORS,
     });
 
     io.on("connection", (socket) => {
