@@ -1,0 +1,17 @@
+server:
+  port: "PORT"
+
+cors:
+  origin: "CORS_ORIGIN"
+
+kafka:
+  clientId: "KAFKA_CLIENT_ID"
+  brokers: "KAFKA_BROKERS"
+  ssl: "KAFKA_SSL"
+  sasl:
+    mechanism: "KAFKA_SASL_MECHANISM"
+    username: "KAFKA_SASL_USERNAME"
+    password: "KAFKA_SASL_PASSWORD"
+
+logging:
+  silent: "LOGGING_SILENT"

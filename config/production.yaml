@@ -1,0 +1,18 @@
+server:
+    port: 5504
+
+kafka:
+    clientId: "web-socket-service"
+    brokers:
+        - "your-kafka-broker:9092"
+    sasl:
+        mechanism: "plain"
+        username: "YOUR_KAFKA_USERNAME"
+        password: "YOUR_KAFKA_PASSWORD"
+    ssl: true
+
+cors:
+    origin:
+        - "https://your-admin-domain.com"
+        - "https://your-client-domain.com"
+    credentials: true

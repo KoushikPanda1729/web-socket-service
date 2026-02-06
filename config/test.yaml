@@ -1,0 +1,16 @@
+server:
+    port: 5504
+
+cors:
+    origin:
+        - "http://localhost:3000"
+        - "http://localhost:3001"
+    credentials: true
+
+kafka:
+    clientId: "web-socket-service"
+    brokers:
+        - "localhost:9092"
+
+logging:
+    silent: true
